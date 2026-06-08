@@ -1,0 +1,3 @@
+[submodule "Plugins/ue-llm-toolkit"]
+	path = Plugins/ue-llm-toolkit
+	url = https://github.com/ColtonWilley/ue-llm-toolkit

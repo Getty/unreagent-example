@@ -1,0 +1,37 @@
+# ============================================================
+#  unreagent — Konfiguration dieses Beispielprojekts
+#
+#  Portabel & committbar (keine Maschinenpfade). Maschinen-Overrides
+#  (Engine-Pfad, claude-Pfad) gehoeren in unreagent.local.yaml (git-ignored).
+# ============================================================
+
+agent:
+  enabled: true
+  command: claude
+  claudeIntegration: true        # haengt --mcp-config (+ permission-prompt-tool) an
+
+permissions:
+  enabled: true
+  mode: allow_all                # allow_all | allowlist | deny_all
+  deny:
+    - "Bash(rm -rf *)"
+
+runtimes:
+  python: { enabled: true }
+  node:   { enabled: true }
+
+mcp:
+  enabled: true
+  address: 127.0.0.1:8765
+  # In-Editor-MCP: UE LLM Toolkit (als Git-Submodule unter Plugins/ue-llm-toolkit).
+  # UE findet die verschachtelte .uplugin per rekursivem Scan; die Node-Bridge
+  # liegt entsprechend tief:
+  extraServers:
+    ue-llm-toolkit:
+      command: node
+      args: ["${PROJECT_DIR}/Plugins/ue-llm-toolkit/Plugin/UELLMToolkit/Resources/mcp-bridge/index.js"]
+      env:
+        UNREAL_MCP_URL: "http://127.0.0.1:3000"
+
+# unreal: und commands: sind optional — Editor-Pfad sowie compile/package
+# werden aus ${ENGINE} + ${PROJECT} abgeleitet.

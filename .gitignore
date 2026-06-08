@@ -1,0 +1,16 @@
+# --- Unreal Engine ---
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+*.VC.db
+*.VC.opendb
+
+# --- unreagent ---
+unreagent.exe
+unreagent.local.yaml
+unreagent.local.yml
+
+# --- Node-Bridge-Abhaengigkeiten (per setup-Skript installiert) ---
+Plugins/ue-llm-toolkit/Plugin/UELLMToolkit/Resources/mcp-bridge/node_modules/
