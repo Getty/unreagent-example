@@ -20,6 +20,14 @@ runtimes:
   python: { enabled: true }
   node:   { enabled: true }
 
+# Datei-Tools (read_file/list_dir/write_file/edit_file) ueber den MCP-Server,
+# strikt auf das Projektverzeichnis beschraenkt. Praktisch mit `-no-agent`:
+# UE + MCP laufen, ein externer Agent arbeitet am Projekt, ohne lokale Anwesenheit.
+files:
+  enabled: true
+  root: "${PROJECT_DIR}"
+  readOnly: false
+
 mcp:
   enabled: true
   address: 127.0.0.1:8765
