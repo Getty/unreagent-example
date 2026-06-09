@@ -9,6 +9,7 @@ agent:
   enabled: true
   command: claude
   claudeIntegration: true        # haengt --mcp-config (+ permission-prompt-tool) an
+  window: true                   # eigenes Konsolenfenster -> interaktive Claude-TUI
 
 permissions:
   enabled: true
