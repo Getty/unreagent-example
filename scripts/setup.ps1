@@ -1,23 +1,23 @@
-# Richtet das Beispielprojekt ein: Submodule holen + Node-Bridge-Deps.
+# Sets up the example project: fetch submodule + Node bridge deps.
 $ErrorActionPreference = "Stop"
 Set-Location (Join-Path $PSScriptRoot "..")
 
-Write-Host "==> Submodule (UE LLM Toolkit) initialisieren ..."
+Write-Host "==> Initializing submodule (UE LLM Toolkit) ..."
 git submodule update --init --recursive
 
 $bridge = "Plugins/ue-llm-toolkit/Plugin/UELLMToolkit/Resources/mcp-bridge"
 if (Test-Path $bridge) {
-    Write-Host "==> npm install in der MCP-Bridge ..."
+    Write-Host "==> npm install in the MCP bridge ..."
     Push-Location $bridge
     npm install
     Pop-Location
 } else {
-    Write-Warning "$bridge nicht gefunden - Submodule korrekt geklont?"
+    Write-Warning "$bridge not found - was the submodule cloned correctly?"
 }
 
 Write-Host ""
-Write-Host "Fertig. Naechste Schritte:"
-Write-Host "  1) unreagent.exe (aus dem Release) in dieses Verzeichnis legen"
-Write-Host "  2) UE 5.7 installiert? sonst UE_ROOT setzen oder unreagent.local.yaml anlegen"
-Write-Host "  3) claude im PATH? sonst command in unreagent.local.yaml setzen"
-Write-Host "  4) unreagent.exe starten"
+Write-Host "Done. Next steps:"
+Write-Host "  1) Drop unreagent.exe (from the release) into this directory"
+Write-Host "  2) UE 5.7 installed? Otherwise set UE_ROOT or create unreagent.local.yaml"
+Write-Host "  3) claude on PATH? Otherwise set command in unreagent.local.yaml"
+Write-Host "  4) Start unreagent.exe"

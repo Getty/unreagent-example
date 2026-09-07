@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
-# Richtet das Beispielprojekt ein: Submodule holen + Node-Bridge-Deps.
+# Sets up the example project: fetch submodule + Node bridge deps.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-echo "==> Submodule (UE LLM Toolkit) initialisieren …"
+echo "==> Initializing submodule (UE LLM Toolkit) …"
 git submodule update --init --recursive
 
 BRIDGE="Plugins/ue-llm-toolkit/Plugin/UELLMToolkit/Resources/mcp-bridge"
 if [ -d "$BRIDGE" ]; then
-  echo "==> npm install in der MCP-Bridge …"
+  echo "==> npm install in the MCP bridge …"
   ( cd "$BRIDGE" && npm install )
 else
-  echo "WARN: $BRIDGE nicht gefunden — Submodule korrekt geklont?"
+  echo "WARN: $BRIDGE not found — was the submodule cloned correctly?"
 fi
 
 echo
-echo "Fertig. Naechste Schritte:"
-echo "  1) unreagent.exe (aus dem Release) in dieses Verzeichnis legen"
-echo "  2) UE 5.7 installiert? sonst UE_ROOT setzen oder unreagent.local.yaml anlegen"
-echo "  3) claude im PATH? sonst command in unreagent.local.yaml setzen"
-echo "  4) unreagent.exe starten"
+echo "Done. Next steps:"
+echo "  1) Drop unreagent.exe (from the release) into this directory"
+echo "  2) UE 5.7 installed? Otherwise set UE_ROOT or create unreagent.local.yaml"
+echo "  3) claude on PATH? Otherwise set command in unreagent.local.yaml"
+echo "  4) Start unreagent.exe"

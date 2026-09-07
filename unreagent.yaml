@@ -1,15 +1,15 @@
 # ============================================================
-#  unreagent — Konfiguration dieses Beispielprojekts
+#  unreagent — configuration for this example project
 #
-#  Portabel & committbar (keine Maschinenpfade). Maschinen-Overrides
-#  (Engine-Pfad, claude-Pfad) gehoeren in unreagent.local.yaml (git-ignored).
+#  Portable & committable (no machine-specific paths). Machine overrides
+#  (engine path, claude path) belong in unreagent.local.yaml (git-ignored).
 # ============================================================
 
 agent:
   enabled: true
   command: claude
-  claudeIntegration: true        # haengt --mcp-config (+ permission-prompt-tool) an
-  window: true                   # eigenes Konsolenfenster -> interaktive Claude-TUI
+  claudeIntegration: true        # attaches --mcp-config (+ permission-prompt-tool)
+  window: true                   # own console window -> interactive Claude TUI
 
 permissions:
   enabled: true
@@ -21,9 +21,9 @@ runtimes:
   python: { enabled: true }
   node:   { enabled: true }
 
-# Datei-Tools (read_file/list_dir/write_file/edit_file) ueber den MCP-Server,
-# strikt auf das Projektverzeichnis beschraenkt. Praktisch mit `-no-agent`:
-# UE + MCP laufen, ein externer Agent arbeitet am Projekt, ohne lokale Anwesenheit.
+# File tools (read_file/list_dir/write_file/edit_file) via the MCP server,
+# strictly confined to the project directory. Handy with `-no-agent`:
+# UE + MCP run, an external agent works on the project with no local presence.
 files:
   enabled: true
   root: "${PROJECT_DIR}"
@@ -32,9 +32,9 @@ files:
 mcp:
   enabled: true
   address: 127.0.0.1:8765
-  # In-Editor-MCP: UE LLM Toolkit (als Git-Submodule unter Plugins/ue-llm-toolkit).
-  # UE findet die verschachtelte .uplugin per rekursivem Scan; die Node-Bridge
-  # liegt entsprechend tief:
+  # In-editor MCP: UE LLM Toolkit (as a git submodule under Plugins/ue-llm-toolkit).
+  # UE finds the nested .uplugin via recursive scan; the Node bridge lives
+  # correspondingly deep:
   extraServers:
     ue-llm-toolkit:
       command: node
@@ -42,5 +42,5 @@ mcp:
       env:
         UNREAL_MCP_URL: "http://127.0.0.1:3000"
 
-# unreal: und commands: sind optional — Editor-Pfad sowie compile/package
-# werden aus ${ENGINE} + ${PROJECT} abgeleitet.
+# unreal: and commands: are optional — editor path as well as compile/package
+# are derived from ${ENGINE} + ${PROJECT}.

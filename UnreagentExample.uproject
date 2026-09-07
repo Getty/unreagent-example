@@ -2,7 +2,7 @@
 	"FileVersion": 3,
 	"EngineAssociation": "5.7",
 	"Category": "",
-	"Description": "Beispielprojekt für unreagent: Launcher + UE LLM Toolkit (In-Editor-MCP) zusammen verdrahtet.",
+	"Description": "Example project for unreagent: launcher + UE LLM Toolkit (in-editor MCP) wired together.",
 	"Plugins": [
 		{
 			"Name": "UELLMToolkit",

@@ -12,5 +12,5 @@ unreagent.exe
 unreagent.local.yaml
 unreagent.local.yml
 
-# --- Node-Bridge-Abhaengigkeiten (per setup-Skript installiert) ---
+# --- Node bridge dependencies (installed via setup script) ---
 Plugins/ue-llm-toolkit/Plugin/UELLMToolkit/Resources/mcp-bridge/node_modules/

@@ -1,20 +1,20 @@
 # unreagent-example
 
-Beispiel-UE-Projekt für den [**unreagent**](https://github.com/Getty/unreagent)
-Launcher. Zeigt das vollständige Konzept verdrahtet:
+Example UE project for the [**unreagent**](https://github.com/Getty/unreagent)
+launcher. Shows the full concept wired up:
 
 ```
-Claude Code ─┬─► unreagent-MCP   (Prozess-Steuerung: start/stop/compile, Logs)
-             └─► ue-llm-toolkit  (In-Editor-MCP: Blueprints, Assets, UE-Python)
+Claude Code ─┬─► unreagent-MCP   (process control: start/stop/compile, logs)
+             └─► ue-llm-toolkit  (in-editor MCP: blueprints, assets, UE Python)
 ```
 
-- Der Launcher startet UE und Claude Code, überwacht beide und gibt dem Agenten
-  **beide** MCP-Server über `--mcp-config` mit.
-- Das In-Editor-Plugin [UE LLM Toolkit](https://github.com/ColtonWilley/ue-llm-toolkit)
-  ist als **Git-Submodule** unter `Plugins/ue-llm-toolkit/` eingebunden (nicht
-  kopiert — so bleibt es updatebar und lizenzkonform).
+- The launcher starts UE and Claude Code, monitors both, and hands the agent
+  **both** MCP servers via `--mcp-config`.
+- The in-editor plugin [UE LLM Toolkit](https://github.com/ColtonWilley/ue-llm-toolkit)
+  is wired in as a **git submodule** under `Plugins/ue-llm-toolkit/` (not
+  copied — so it stays updatable and license-compliant).
 
-## Einrichten
+## Setup
 
 ```bash
 git clone --recursive https://github.com/Getty/unreagent-example
@@ -22,24 +22,24 @@ cd unreagent-example
 ./scripts/setup.sh          # Windows: powershell -File scripts/setup.ps1
 ```
 
-Schon geklont ohne `--recursive`? Dann holt `setup` das Submodule nach
-(`git submodule update --init --recursive`) und installiert die Node-Bridge-Deps.
+Already cloned without `--recursive`? Then `setup` fetches the submodule
+(`git submodule update --init --recursive`) and installs the Node bridge deps.
 
-Danach:
+After that:
 
-1. `unreagent.exe` aus dem [Release](https://github.com/Getty/unreagent/releases)
-   in dieses Verzeichnis legen.
-2. Voraussetzungen: **UE 5.7** (sonst `UE_ROOT` setzen oder `engineRoot` in
-   `unreagent.local.yaml`), **Node.js**, und **Claude Code** (`claude` im PATH,
-   sonst `agent.command` in `unreagent.local.yaml` setzen).
-3. `unreagent.exe` starten.
+1. Drop `unreagent.exe` from the [release](https://github.com/Getty/unreagent/releases)
+   into this directory.
+2. Requirements: **UE 5.7** (otherwise set `UE_ROOT` or `engineRoot` in
+   `unreagent.local.yaml`), **Node.js**, and **Claude Code** (`claude` on
+   PATH, otherwise set `agent.command` in `unreagent.local.yaml`).
+3. Start `unreagent.exe`.
 
-## Wie das Plugin gefunden wird
+## How the plugin gets found
 
-Der Upstream legt die `.uplugin` verschachtelt ab
-(`Plugin/UELLMToolkit/UELLMToolkit.uplugin`). UE durchsucht `Plugins/` jedoch
-**rekursiv**, findet sie also auch im Submodule-Unterordner. Die `unreagent.yaml`
-zeigt entsprechend auf den tiefen Bridge-Pfad:
+Upstream nests the `.uplugin` file
+(`Plugin/UELLMToolkit/UELLMToolkit.uplugin`). UE scans `Plugins/`
+**recursively** though, so it finds it even in the submodule subfolder.
+`unreagent.yaml` points to the deep bridge path accordingly:
 
 ```yaml
 mcp:
@@ -50,9 +50,9 @@ mcp:
       env: { UNREAL_MCP_URL: "http://127.0.0.1:3000" }
 ```
 
-## Lokale Overrides (`unreagent.local.yaml`, git-ignored)
+## Local overrides (`unreagent.local.yaml`, git-ignored)
 
 ```yaml
-engineRoot: "D:/UE/UE_5.7"                 # falls Auto-Detect die Engine nicht findet
-agent: { command: "C:/.../claude.cmd" }    # falls claude nicht im PATH
+engineRoot: "D:/UE/UE_5.7"                 # if auto-detect can't find the engine
+agent: { command: "C:/.../claude.cmd" }    # if claude isn't on PATH
 ```
